@@ -4,6 +4,7 @@ import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { cn } from "@/lib/utils";
 import Header from "@/components/layout/header";
+import { Toaster } from "sonner";
 
 const manrope = Manrope({subsets:['latin'],variable:'--font-sans'})
 
@@ -27,6 +28,7 @@ export default function RootLayout({
         <ThemeProvider>
           <Header/>
           {children}
+          <Toaster richColors/>
         </ThemeProvider>
       </body>
     </html>
