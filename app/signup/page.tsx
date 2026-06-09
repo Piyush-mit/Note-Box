@@ -1,16 +1,26 @@
 "use client"
 
 import { SignupForm } from "@/components/signup-form"
-import { GalleryVerticalEndIcon, NotebookTabs } from "lucide-react"
+import { authClient } from "@/lib/auth-client"
+import { NotebookTabs } from "lucide-react"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
+import React from "react"
 
 export default function SignupPage() {
+  const session = authClient.useSession();
+  const router = useRouter();
+  React.useEffect(() => {
+    if (session.data) {
+      router.push('/');
+    }
+  }, [session, router])
   return (
     <div className="flex min-h-svh flex-col items-center justify-center gap-6 p-6 md:p-10">
       <div className="flex w-full max-w-sm flex-col gap-6 mt-6">
         <Link href="/" className="flex items-center gap-2 self-center font-medium">
           <div className="flex size-6 items-center justify-center rounded-md bg-primary text-primary-foreground p-1">
-            <NotebookTabs scale={0.5}/>
+            <NotebookTabs scale={0.5} />
           </div>
           Note Box
         </Link>

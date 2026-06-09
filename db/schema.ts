@@ -72,7 +72,26 @@ export const verification = pgTable(
   },
   (table) => [index("verification_identifier_idx").on(table.identifier)],
 );
+export const post = pgTable("post", {
+  id: text("id").primaryKey(),
+  title: text("title").notNull(),
+  content: text("content").notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at")
+    .defaultNow()
+    .$onUpdate(() => /* @__PURE__ */ new Date())
+    .notNull(),
+  userId: text("user_id")
+    .notNull()
+    .references(() => user.id, { onDelete: "cascade" }),
+})
 
+export const postRelations = relations(post, ({ one }) => ({
+  user: one(user, {
+    fields: [post.userId],
+    references: [user.id],
+  }),
+}))
 export const userRelations = relations(user, ({ many }) => ({
   sessions: many(session),
   accounts: many(account),
