@@ -17,7 +17,14 @@ export default function Header() {
                 <Link href={'/'}>
                     <p>NoteBox</p>
                 </Link>
-                    {session ? <UserButton session={session} /> :
+                    {session ?  
+                        <div className='flex items-center gap-2'>
+                            <Button>
+                                <Link href={"/create"}>Create Post</Link>
+                            </Button>
+                            <UserButton session={session} />
+                        </div>
+                    :
                         <nav className='flex items-center gap-2'>
                             <Button variant={"outline"}>
                                 <Link href={'/login'}>Login</Link>

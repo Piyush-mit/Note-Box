@@ -16,7 +16,7 @@ export default function UserButton({ session }: { session: { user : User , sessi
 
     return (
         <DropdownMenu>
-            <DropdownMenuTrigger render={<Button variant="outline" size={"icon"}>
+            <DropdownMenuTrigger render={<Button variant="outline" size={"icon-sm"}>
                 <Avatar>
                     <AvatarImage src={session.user.image ? session.user.image : ""}/>
                     <AvatarFallback>{session.user.name[0]}</AvatarFallback>

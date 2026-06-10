@@ -88,7 +88,7 @@ export function SignupForm({
                 callbackURL: "/",
             });
             if (error) toast(error.message);
-            if (data) toast("Account created successfully")
+            if (data) toast("Account created successfully");
             router.push("/");
         } catch (error) {
             console.log(error);
